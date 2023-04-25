@@ -2,7 +2,9 @@ package com.skorobagatiy.ClientDB.controllers;
 
 import com.skorobagatiy.ClientDB.exceptions.GenericSystemException;
 import com.skorobagatiy.ClientDB.models.Car;
+import com.skorobagatiy.ClientDB.models.CarDto;
 import com.skorobagatiy.ClientDB.models.User;
+import com.skorobagatiy.ClientDB.models.UserDto;
 import com.skorobagatiy.ClientDB.services.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,11 +26,29 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<UserDto>> getUsers() {
         log.debug("GET /users");
-        List<User> users = userService.getUsers();
+        List<UserDto> users = userService.getUsers();
 
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable int userId) throws GenericSystemException {
+        log.debug("GET /users/{}", userId);
+
+        User user = userService.getUserById(userId);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/{userId}/cars")
+    public ResponseEntity<List<CarDto>> getCarsUserById(@PathVariable int userId) throws GenericSystemException {
+        log.debug("GET /users/{}/cars", userId);
+
+        List<CarDto> cars = userService.getCarsUserById(userId);
+
+        return new ResponseEntity<>(cars, HttpStatus.OK);
     }
 
     @PostMapping
@@ -40,15 +60,6 @@ public class UserController {
         log.error("Create user id={}", user.getId());
 
         return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable int userId) throws GenericSystemException {
-        log.debug("GET /users/{}", userId);
-
-        User user = userService.getUserById(userId);
-
-        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @DeleteMapping("/{userId}")
