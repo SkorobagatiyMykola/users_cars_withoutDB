@@ -8,15 +8,13 @@ import java.util.List;
 import java.util.Random;
 
 public class GenerationDB {
-    public static int USER_COUNT = 10;
-
+    public static int USER_COUNT = 15;
     private static int USER_ID = 0;
     private static int MIN_USER_AGE = 15;
     private static int MAX_USER_AGE = 75;
     private static String[] USER_NAMES = {"Ivan", "Ira", "Mykola", "Petro", "Pavlo", "Olga", "Tetiana"};
     private static String[] USER_SURNAMES = {"Tkachenko", "Petrenko", "Vasilenko", "Tkach", "Shevchenko", "Drozd"};
-
-    public static int MAX_CARS = 5;
+    public static int MAX_CARS = 7;
     private static int MIN_CAR_SPEED = 90;
     private static int MAX_CAR_SPEED = 180;
     private static String[] CAR_MODELS = {"BMW", "Mercedes", "Lada", "Volvo", "Citroen", "Honda"};
