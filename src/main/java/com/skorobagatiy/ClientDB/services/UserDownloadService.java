@@ -19,14 +19,12 @@ public class UserDownloadService {
     private final UserCsvMarshaller userCsvMarshaller;
     private final UserService userService;
 
+    @Autowired
     public UserDownloadService(UserExcelMarshaller userExcelMarshaller, UserCsvMarshaller userCsvMarshaller, UserService userService) {
         this.userExcelMarshaller = userExcelMarshaller;
         this.userCsvMarshaller = userCsvMarshaller;
         this.userService = userService;
     }
-
-    @Autowired
-
 
     public ByteArrayInputStream loadCsv() throws IOException {
         logger.info("Start UserDownloadService for all users download to CSV format.");
